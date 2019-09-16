@@ -22,9 +22,10 @@
 
         <button type="submit">Adicionar</button> 
       </form>
-      <ul v-for="i in info" :key="i">
+      <ul v-for="(i, idx) in info" :key="i">
         <li>
-           <a :href="i" target="_blank">{{i}}</a>
+           <a :href="i" target="_blank">{{i}} - {{idx}}</a>
+           <button @click="remover(i)">Remover</button>
         </li>
       </ul>
 
@@ -47,6 +48,8 @@
 
     <button @click="alterarAutor(true)">Alterar para autor original</button>
 
+
+ 
 
 
   </div>
@@ -98,9 +101,16 @@ export default {
     isAutorOriginal() {
       return this.autor.startsWith('Fabiano')
     },
+    remover(elemento) {
+      let idx = this.info.indexOf(elemento)
+      if (idx < 0)
+        alert('Não existe')
+      else {
+        this.info.splice(idx, 1)
+      }
+
+    },
     adicionarInfo() {
-
-
       this.info.forEach((elemento,idx) => {
           console.log("idx:" + idx + " el:" + elemento)
       })

@@ -48,11 +48,11 @@
     <button @click="alterarAutor(true)">Alterar para autor original</button>
 
 
+
   </div>
 </template>
 
 <script>
-
 export default {
   // atributos
   data() {
@@ -99,29 +99,24 @@ export default {
       return this.autor.startsWith('Fabiano')
     },
     adicionarInfo() {
-      let encontrou = 
-        this.info.includes(this.urlParaAdicionar)
 
-      this.info.forEach(e => {
-        console.log(e)
-      })  
 
-      let temAlgum = this.info.some(e => {
-        return e == this.urlParaAdicionar
+      this.info.forEach((elemento,idx) => {
+          console.log("idx:" + idx + " el:" + elemento)
       })
-      console.log(temAlgum)
 
-      let elemento = this.info.find(e => {
-        return e == this.urlParaAdicionar
+      let retorno = this.info.some(elemento => {
+        return elemento.endsWith(".com.br")
       })
-      console.log(elemento)
+      console.log(retorno)
+
+      let novoArray = this.info.filter(elemento => {
+          return elemento.endsWith(".com")
+      })
+      console.log('novo array')
+      console.log(novoArray)
 
 
-
-      if (! encontrou) {
-        this.info.push(this.urlParaAdicionar)
-        this.limpaTela()
-      }
     },
     limpaTela() {
       this.urlParaAdicionar = null
